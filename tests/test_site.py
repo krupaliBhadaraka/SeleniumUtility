@@ -34,3 +34,8 @@ def test_amazon_sign_in(driver, mobile_number, username, password):
     """Test Amazon sign in functionality"""
     sign_in_user = amazon_sign_in(driver, mobile_number, password)
     assert sign_in_user == f"Hello, {username}"
+
+
+def test_report_for_failed(driver):
+    """Check failed test result into report"""
+    assert False
