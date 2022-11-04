@@ -1,4 +1,5 @@
 """Script to create Pivot table"""
+import os
 import sys
 
 import pandas as pd
@@ -60,7 +61,8 @@ year_of_experience_list = [15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 15
 
 df = pd.DataFrame(
     {'Name': name_list, 'Level': level_list, "Experti": tech_list, 'Year of experience': year_of_experience_list})
-filename = 'DataSheet.xlsx'
+
+filename = os.getcwd() + '/DataSheet.xlsx'
 writer = ExcelWriter(filename)
 df.to_excel(writer, 'Data_Source', index=False)
 writer.save()
@@ -82,8 +84,8 @@ wb.Sheets.Add().Name = ws2_name
 ws2 = wb.Sheets(ws2_name)
 pt_name = 'By_Experti'
 pt_rows = ['Experti']
-pt_cols = ['Level']
-pt_filters = ['Year of experience']
+pt_cols = ['Year of experience']
+pt_filters = ['Level']
 pt_fields = [['Name', 'Name: count', win32c.xlCount, '0']]
 
 create_pivot_table(wb, ws1, ws2, ws2_name, pt_name, pt_rows, pt_cols, pt_filters, pt_fields)
